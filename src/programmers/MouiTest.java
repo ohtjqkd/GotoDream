@@ -14,18 +14,23 @@ public class MouiTest {
 		int oneScore = 0;
 		int twoScore = 0;
 		int threeScore = 0;
-		int[] judge = {oneScore, twoScore, threeScore};
 		for (int i = 0; i < answers.length; i++) {
 			if(answers[i] == onePattern[i%onePattern.length]) oneScore++;
 			if(answers[i] == twoPattern[i%twoPattern.length]) twoScore++;
 			if(answers[i] == threePattern[i%threePattern.length]) threeScore++;
 		}
+		int[] judge = {oneScore, twoScore, threeScore};
+		for (int i = 0; i < judge.length; i++) {
+			System.out.println((int) judge[i]);
+		}
 		for (int i = 0; i < judge.length-1; i++) {
-			if(judge[i] < judge[i+1]) {
-				array.clear();
-				array.add(i+1);
-			} else if(judge[i] == judge[i+1]) {
-				array.add(i+1);
+			for (int j = i+1; j < judge.length; j++) {
+				if(judge[i] >= judge[j]) {
+					array.clear();
+					array.add(i);
+				} else if(judge[i] == judge[j]) {
+					array.add(i);
+				}
 			}
 		}
 		
